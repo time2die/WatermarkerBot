@@ -8,20 +8,18 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class Main {
     public static void main(String args[]){
 
+        //Initialize Api Context
+        ApiContextInitializer.init();
 
-        System.out.println(System.getenv("botToken"));
-       // //Initialize Api Context
-       // ApiContextInitializer.init();
-//
-       // //Instantiate Telegram Bots API
-       // TelegramBotsApi botsApi = new TelegramBotsApi();
-//
-       // //Register bot
-       // try {
-       //     botsApi.registerBot(new MyWatermarkerBot());
-       // } catch (TelegramApiException e) {
-       //     e.printStackTrace();
-       // }
+        //Instantiate Telegram Bots API
+        TelegramBotsApi botsApi = new TelegramBotsApi();
+
+        //Register bot
+        try {
+            botsApi.registerBot(new MyWatermarkerBot());
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
 
 
 
