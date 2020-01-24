@@ -10,18 +10,18 @@ public class Main {
 
 
         System.out.println(System.getenv("botToken"));
-        //Initialize Api Context
-        ApiContextInitializer.init();
-
-        //Instantiate Telegram Bots API
-        TelegramBotsApi botsApi = new TelegramBotsApi();
-
-        //Register bot
-        try {
-            botsApi.registerBot(new MyWatermarkerBot());
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
+       // //Initialize Api Context
+       // ApiContextInitializer.init();
+//
+       // //Instantiate Telegram Bots API
+       // TelegramBotsApi botsApi = new TelegramBotsApi();
+//
+       // //Register bot
+       // try {
+       //     botsApi.registerBot(new MyWatermarkerBot());
+       // } catch (TelegramApiException e) {
+       //     e.printStackTrace();
+       // }
 
 
 
