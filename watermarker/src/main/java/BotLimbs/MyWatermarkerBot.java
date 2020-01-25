@@ -10,9 +10,12 @@ public class MyWatermarkerBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         //This method will be called when an Update is received by your bot.
 
+        long chat_id = Long.parseLong(System.getenv("chat_id"));
+        
+        if (!update.getMessage().getChatId().equals(chat_id)){
         if (update.hasMessage() && update.getMessage().hasText()) {
             SendMessage message = new SendMessage(); // Create a SendMessage object with mandatory fields
-            message.setChatId(System.getenv("chat_id"));
+            message.setChatId(chat_id);
             message.setText(update.getMessage().getText());
 
             try {
@@ -21,6 +24,7 @@ public class MyWatermarkerBot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
         }
+    }
     }
 
     @Override
