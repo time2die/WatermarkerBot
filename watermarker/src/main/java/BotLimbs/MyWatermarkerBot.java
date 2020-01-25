@@ -1,14 +1,19 @@
 package BotLimbs;
 
+import org.glassfish.grizzly.http.server.DefaultSessionManager;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class MyWatermarkerBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         //This method will be called when an Update is received by your bot.
+
+        DefaultSessionManager sessionManager;
+
 
         long chat_id = Long.parseLong(System.getenv("chat_id"));
 
@@ -17,7 +22,12 @@ public class MyWatermarkerBot extends TelegramLongPollingBot {
             if (update.hasMessage() && update.getMessage().hasText()) {
                 SendMessage message = new SendMessage(); // Create a SendMessage object with mandatory fields
                 message.setChatId(chat_id);
-                message.setText("Cообщение от\n" + update.getMessage().getChatId() + "\t" + update.getMessage().getContact() + "\n" + update.getMessage().getText());
+                message.setText(update.getMessage().getDate() + " Cообщение от\n" +
+                        update.getMessage().getChatId() + "\t" +
+                        update.getMessage().getFrom().getFirstName() + "\t" +
+                        update.getMessage().getFrom().getLastName() + "\t" +
+                        update.getMessage().getFrom().getUserName() + "\n" +
+                        update.getMessage().getText());
 
                 try {
                     execute(message); // Call method to send the message
