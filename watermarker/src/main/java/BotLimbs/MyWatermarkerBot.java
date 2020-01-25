@@ -11,20 +11,21 @@ public class MyWatermarkerBot extends TelegramLongPollingBot {
         //This method will be called when an Update is received by your bot.
 
         long chat_id = Long.parseLong(System.getenv("chat_id"));
-        
-        if (!update.getMessage().getChatId().equals(chat_id)){
-        if (update.hasMessage() && update.getMessage().hasText()) {
-            SendMessage message = new SendMessage(); // Create a SendMessage object with mandatory fields
-            message.setChatId(chat_id);
-            message.setText(update.getMessage().getText());
 
-            try {
-                execute(message); // Call method to send the message
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
+        if (update.getMessage().getChatId().equals(chat_id)) {
+        } else {
+            if (update.hasMessage() && update.getMessage().hasText()) {
+                SendMessage message = new SendMessage(); // Create a SendMessage object with mandatory fields
+                message.setChatId(chat_id);
+                message.setText("Cообщение от\n" + update.getMessage().getChatId() + "\t" + update.getMessage().getContact() + "\n" + update.getMessage().getText());
+
+                try {
+                    execute(message); // Call method to send the message
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
     }
 
     @Override
