@@ -12,7 +12,7 @@ public class MyWatermarkerBot extends TelegramLongPollingBot {
 
         if (update.hasMessage() && update.getMessage().hasText()) {
             SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
-                    .setChatId(update.getMessage().getChatId())
+                    .setChatId("343187468")
                     .setText(update.getMessage().getText());
             try {
                 execute(message); // Call method to send the message
