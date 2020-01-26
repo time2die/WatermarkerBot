@@ -16,7 +16,7 @@ public class Main {
 
         //Register bot
         try {
-            botsApi.registerBot(new MyWatermarkerBot());
+            botsApi.registerBot(new MyResenderBot());
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
